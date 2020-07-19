@@ -29,6 +29,9 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
   // Question lists
   List<Question> _questions = List<Question>();
 
+  // states
+  bool _questionHolderState = false;
+
 
   @override
   void initState() {
@@ -79,6 +82,13 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
             width: 100,
             height: 50,
             child:
+            Text("Soru Sayısı",style: customTextStyle(),),
+          ),
+          SizedBox(width: sizedBoxSpaceWith,),
+          Container(
+            width: 100,
+            height: 50,
+            child:
             TextField(
               controller: _questionQuantityController,
               decoration: InputDecoration(
@@ -87,31 +97,12 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
               ),
             ),
           ),
-          SizedBox(width: sizedBoxSpaceWith,),
           // butonlar
 
-            Container(
-              height: 50,
-              width: 100,
-              child: FlatButton(
-                child: Text("SIRALI"),
-                onPressed: getQuestion,
-                color: flatButtonColor,
-                textColor: flatButtonTextColor,
-              ),
-            ),
 
-          SizedBox(width: sizedBoxSpaceWith,),
-          Container(
-            height: 50,
-            width: 100,
-            child: FlatButton(
-              child: Text("RASTGELE"),
-              onPressed: getQuestionRandom,
-              color: flatButtonColor,
-              textColor: flatButtonTextColor,
-            ),
-          ),
+
+
+
         ],
       ),
     );
@@ -124,25 +115,59 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: <Widget>[
-          Container(width: 100,child: Text("Eposta ile:",style: customTextStyle(),),),
+          Container(
+            height: 50,
+            width: 100,
+            child: Text("Getir",style: customTextStyle(),),
+          ),
           SizedBox(width: sizedBoxSpaceWith,),
           Container(
             height: 50,
             width: 100,
             child: FlatButton(
-              child: Text("GÖNDER"),
-              onPressed: sendWithEmail,
-              color: Colors.orangeAccent,
+              child: Text("SIRALI"),
+              onPressed: getQuestion,
+              color: flatButtonColor,
               textColor: flatButtonTextColor,
             ),
           ),
+          SizedBox(width: sizedBoxSpaceWith,),
+
+          Container(
+            height: 50,
+            width: 100,
+            child: FlatButton(
+              child: Text("RASTGELE"),
+              onPressed: getQuestionRandom,
+              color: flatButtonColor,
+              textColor: flatButtonTextColor,
+            ),
+          ),
+
+
         ],
       ),
     );
   }
 
+
+
+
+
   void getQuestion() {
-    debugPrint("sıralı getire basıldı");
+   // debugPrint("sıralı getire basıldı");
+    if(_selectedLecture!=null && _questionQuantityController.text!=""){
+      // question getiren fonksiyon yazılacak
+      QuestionApi.getQuestions(_selectedLecture.lecture_id, _questionQuantityController.text)
+          .then((response) {
+            Iterable questionList = jsonDecode(response.body);
+            this._questions = questionList.map((question) => Question.fromJson(question)).toList();
+            for(Question question in _questions){
+              debugPrint(question.question_question);
+            }
+      });
+    }
+    _questionHolderState = true;
   }
 
   void getQuestionRandom() {
@@ -159,7 +184,7 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
     return TextStyle(
       fontSize: 20,
       fontStyle: FontStyle.normal,
-      color: Colors.green.shade700,
+      color: Colors.red,
     );
   }
 
@@ -190,14 +215,6 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
   }
 
   lectureFlatButtonClicked(Lecture lecture) {
-   /* String lecture_id = lecture.lecture_id;
-    String question_limit = _questionQuantityController.text;
-    QuestionApi.getQuestions(lecture_id, question_limit).then((response) {
-      setState(() {
-        Iterable questionList = jsonDecode(response.body);
-        this._questions = questionList.map((question) => Question.fromJson(question)).toList();
-      });
-    }); */
 
    _selectedLecture = lecture;
    debugPrint(_selectedLecture.lecture_name);
