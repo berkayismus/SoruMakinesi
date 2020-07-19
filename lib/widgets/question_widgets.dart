@@ -1,8 +1,10 @@
 import 'dart:convert';
 
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 import 'package:soru_makinesi/data/api/lecture_api.dart';
+import 'package:soru_makinesi/data/api/question_api.dart';
 import 'package:soru_makinesi/models/lecture.dart';
+import 'package:soru_makinesi/models/question.dart';
 
 class QuestionWidgets extends StatefulWidget {
   @override
@@ -11,166 +13,198 @@ class QuestionWidgets extends StatefulWidget {
 
 class _QuestionWidgetsState extends State<QuestionWidgets> {
 
-  // web servisten dersleri çekelim
+  // Flatbuttons
   List<Lecture> _lectures = List<Lecture>();
-  List<DropdownMenuItem<Lecture>> _lectureItems = List<DropdownMenuItem<Lecture>>();
+  List<Widget> _flatButtons = List<Widget>();
   Lecture _selectedLecture;
 
-  // TextField'ların controller kısımları tanımlanıyor
+  // consts
+  final double sizedBoxSpaceWith = 10;
+  final Color flatButtonTextColor = Colors.white;
+  final Color flatButtonColor = Colors.pink;
+
+  // Controllers
   TextEditingController _questionQuantityController;
-  TextEditingController _getQuestionsController;
-  bool _getQuestionsState = false;
+
+  // Question lists
+  List<Question> _questions = List<Question>();
+
 
   @override
   void initState() {
 
-    getLecturesFromApi();
-    _selectedLecture = _lectureItems[0].value;
-
-    _questionQuantityController = TextEditingController();
-    _getQuestionsController = TextEditingController();
     super.initState();
-
-  }
-
-  @override
-  void dispose() {
-
-    _questionQuantityController.dispose();
-    _getQuestionsController.dispose();
-    super.dispose();
+    _questionQuantityController = TextEditingController();
+    getLecturesFromApi();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 5, left: 5),
-      child: Column(
+    return Padding(
+      padding: EdgeInsets.all(20),
+      child: buildMainColumnWidget(),
+    );
+  }
+
+  buildMainColumnWidget() {
+    return Column(
+      children: <Widget>[
+        buildFirstRowWidget(),
+        buildSecondRowWidget(),
+        buildThirthRowWidget(),
+      ],
+    );
+  }
+
+  buildFirstRowWidget() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
         children: <Widget>[
-          // birinci satır
-          Row(
-            children: <Widget>[
-              Container(
-                child: Text(
-                  "Hangi Ders",
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
-                ),
-                margin: EdgeInsets.only(top: 10, left: 20),
-              ),
-              Container(
-                child: ddMenu(),
-                margin: EdgeInsets.only(top: 10, left: 20),
-              )
-            ],
-          ),
+          Container(width: 100,child: Text("Ders:",style: customTextStyle()),),
+          SizedBox(width: sizedBoxSpaceWith,),
 
-          // ikinci satır
-          Row(
-            children: <Widget>[
-              Container(
-                width: 100,
-                height: 50,
-                margin: EdgeInsets.only(top: 10, left: 140),
-                child: TextField(
-                  controller: _questionQuantityController,
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Kaç Soru',
-                  ),
-                ),
-              ),
-            ],
-          ),
+          Expanded(child :SingleChildScrollView(scrollDirection: Axis.horizontal,child: Row(children: _flatButtons,),),),
+        ],
+      ),
+    );
+  }
 
-          // üçüncü satır
-          Row(
-            children: <Widget>[
-              Container(
-                margin: EdgeInsets.only(top: 10, left: 140),
-                child: FlatButton(
-                  onPressed: () {
-                    setState(() {
-                      debugPrint(_questionQuantityController.text);
-                      _getQuestionsState = true;
-                    });
-                  },
-                  child: Text("Soru Getir"),
-                  color: Colors.orange,
-                ),
+  buildSecondRowWidget() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: <Widget>[
+          Container(
+            width: 100,
+            height: 50,
+            child:
+            TextField(
+              controller: _questionQuantityController,
+              decoration: InputDecoration(
+                  labelText: "Soru Adeti",
+                border: OutlineInputBorder(),
               ),
-            ],
+            ),
           ),
+          SizedBox(width: sizedBoxSpaceWith,),
+          // butonlar
 
-          // dördüncü satır
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.only(top: 10),
-                  child: TextField(
-                    controller: _getQuestionsController,
-                    enabled: _getQuestionsState,
-                    obscureText: false,
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Getirilen Sorular',
-                    ),
-                    maxLines: 5,
-                  ),
-                ),
+            Container(
+              height: 50,
+              width: 100,
+              child: FlatButton(
+                child: Text("SIRALI"),
+                onPressed: getQuestion,
+                color: flatButtonColor,
+                textColor: flatButtonTextColor,
               ),
-            ],
+            ),
+
+          SizedBox(width: sizedBoxSpaceWith,),
+          Container(
+            height: 50,
+            width: 100,
+            child: FlatButton(
+              child: Text("RASTGELE"),
+              onPressed: getQuestionRandom,
+              color: flatButtonColor,
+              textColor: flatButtonTextColor,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget ddMenu() {
-    return DropdownButton(
-      onChanged: (Lecture value) => onChangedItem(value),
-      value: _selectedLecture,
-      items: _lectureItems,
+
+
+  buildThirthRowWidget() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Row(
+        children: <Widget>[
+          Container(width: 100,child: Text("Eposta ile:",style: customTextStyle(),),),
+          SizedBox(width: sizedBoxSpaceWith,),
+          Container(
+            height: 50,
+            width: 100,
+            child: FlatButton(
+              child: Text("GÖNDER"),
+              onPressed: sendWithEmail,
+              color: Colors.orangeAccent,
+              textColor: flatButtonTextColor,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void getQuestion() {
+    debugPrint("sıralı getire basıldı");
+  }
+
+  void getQuestionRandom() {
+    debugPrint("rastgele getire basıldı");
+  }
+
+
+  void sendWithEmail() {
+    debugPrint("eposta ile göndere basıldı");
+
+  }
+
+  customTextStyle() {
+    return TextStyle(
+      fontSize: 20,
+      fontStyle: FontStyle.normal,
+      color: Colors.green.shade700,
     );
   }
 
   void getLecturesFromApi() {
-    setState(() {
-      LectureApi.getLectures().then((response) {
+    LectureApi.getLectures().then((response)  {
+      setState(() {
         Iterable list = jsonDecode(response.body);
         this._lectures = list.map((lecture) => Lecture.fromJson(lecture)).toList();
-        //debugPrint(_lectures[0].lecture_name + " " + _lectures[0].lecture_code); // çalışıyor
-        addLectureItems(_lectures);
+        _selectedLecture = _lectures[0];
+        getLectureWidgets();
       });
     });
   }
 
-  void addLectureItems(List<Lecture> lectures) {
-    for(Lecture lecture in lectures){
-      _lectureItems.add(getLectureItem(lecture));
+  List<Widget> getLectureWidgets() {
+    for(Lecture lecture in _lectures){
+      _flatButtons.add(getLectureWidget(lecture));
     }
   }
 
-  DropdownMenuItem<Lecture> getLectureItem(Lecture lecture) {
-    return DropdownMenuItem(
+  Widget getLectureWidget(Lecture lecture) {
+    return FlatButton(
       child: Text(lecture.lecture_name),
-      value: lecture,
+      color: Colors.teal,
+      textColor: flatButtonTextColor,
+      onPressed: (){lectureFlatButtonClicked(lecture);},
     );
   }
 
-  onChangedItem(Lecture value) {
-    _selectedLecture = value;
+  lectureFlatButtonClicked(Lecture lecture) {
+   /* String lecture_id = lecture.lecture_id;
+    String question_limit = _questionQuantityController.text;
+    QuestionApi.getQuestions(lecture_id, question_limit).then((response) {
+      setState(() {
+        Iterable questionList = jsonDecode(response.body);
+        this._questions = questionList.map((question) => Question.fromJson(question)).toList();
+      });
+    }); */
+
+   _selectedLecture = lecture;
+   debugPrint(_selectedLecture.lecture_name);
+
   }
 
 
 
   
-
-
-
-
-
-} // State class sonu
+}// class sonu
