@@ -29,8 +29,6 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
   // Question lists
   List<Question> _questions = List<Question>();
 
-  // states
-  bool _questionHolderState = false;
 
 
   @override
@@ -101,8 +99,6 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
 
 
 
-
-
         ],
       ),
     );
@@ -126,7 +122,7 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
             width: 100,
             child: FlatButton(
               child: Text("SIRALI"),
-              onPressed: getQuestion,
+              onPressed: _getOrdinal,
               color: flatButtonColor,
               textColor: flatButtonTextColor,
             ),
@@ -154,20 +150,19 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
 
 
 
-  void getQuestion() {
+  void _getQuestion() {
    // debugPrint("sıralı getire basıldı");
     if(_selectedLecture!=null && _questionQuantityController.text!=""){
       // question getiren fonksiyon yazılacak
       QuestionApi.getQuestions(_selectedLecture.lecture_id, _questionQuantityController.text)
           .then((response) {
-            Iterable questionList = jsonDecode(response.body);
-            this._questions = questionList.map((question) => Question.fromJson(question)).toList();
-            for(Question question in _questions){
-              debugPrint(question.question_question);
-            }
+            setState(() {
+              Iterable questionList = jsonDecode(response.body);
+              this._questions = questionList.map((question) => Question.fromJson(question)).toList();
+              _questionDialog();
+            });
       });
     }
-    _questionHolderState = true;
   }
 
   void getQuestionRandom() {
@@ -221,7 +216,41 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
 
   }
 
+  Future<void> _questionDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Sorular Getirildi'),
+          content: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: ListBody(
+              children: <Widget>[
+                Text('Örnek soru 1 : ${_questions[0].question_question}'),
+                Text('Örnek cevap 1 : ${_questions[0].question_validate_answer}'),
+
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Kapat'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
 
 
   
+
+  void _getOrdinal() {
+    _getQuestion();
+  }
 }// class sonu

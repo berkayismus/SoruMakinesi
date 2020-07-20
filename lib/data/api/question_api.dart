@@ -1,4 +1,7 @@
+import 'dart:convert';
+
 import 'package:http/http.dart' as http;
+import 'package:soru_makinesi/models/lecture.dart';
 
 class QuestionApi{
 
@@ -7,6 +10,21 @@ class QuestionApi{
   static Future getQuestions(String lecture_id,String question_limit) async {
     var response = await http.get("$base_url/question/all/?lecture_id=$lecture_id&limit=$question_limit");
     return response;
+  }
+
+  static Future addQuestion(String question_question,String answers,String validate_answer,Lecture lecture) async {
+    var data = {
+      "question_question":question_question,
+      "question_answers":answers,
+      "question_validate_answer":validate_answer,
+      "lecture_id":lecture.lecture_id,
+    };
+    var response = await http.post("$base_url/question/add/index.php",body: data);
+    if(response.statusCode == 200){
+      return response;
+    } else{
+      throw("İstek yapılırken hata");
+    }
   }
 
 }
