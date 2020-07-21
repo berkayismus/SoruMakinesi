@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 import 'package:soru_makinesi/models/lecture.dart';
+import 'package:soru_makinesi/models/question.dart';
 
 class QuestionApi{
 
@@ -23,6 +24,25 @@ class QuestionApi{
     if(response.statusCode == 200){
       return response;
     } else{
+      throw("İstek yapılırken hata");
+    }
+  }
+
+  static Future updateQuestion(Lecture lecture,Question oldQuestion,String newQuestion,String newAnswers,String newValidateAnswer) async {
+    Map data = {
+      "lecture_id":lecture.lecture_id,
+      "question_id":oldQuestion.question_id,
+      "question_question":newQuestion,
+      "question_answers":newAnswers,
+      "question_validate_answer":newValidateAnswer,
+    };
+    var response = await http.post(
+      "$base_url/question/update/index.php",
+      body: data,
+    );
+    if(response.statusCode==200){
+      return response;
+    }else{
       throw("İstek yapılırken hata");
     }
   }

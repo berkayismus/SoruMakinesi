@@ -13,10 +13,11 @@ class QuestionWidgets extends StatefulWidget {
 
 class _QuestionWidgetsState extends State<QuestionWidgets> {
 
-  // Flatbuttons
+  // ddMenu
   List<Lecture> _lectures = List<Lecture>();
-  List<Widget> _flatButtons = List<Widget>();
+  List<DropdownMenuItem<Lecture>> _lectureItems = List<DropdownMenuItem<Lecture>>();
   Lecture _selectedLecture;
+
 
   // consts
   final double sizedBoxSpaceWith = 10;
@@ -65,7 +66,7 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
           Container(width: 100,child: Text("Ders:",style: customTextStyle()),),
           SizedBox(width: sizedBoxSpaceWith,),
 
-          Expanded(child :SingleChildScrollView(scrollDirection: Axis.horizontal,child: Row(children: _flatButtons,),),),
+          builDropDownButton(),
         ],
       ),
     );
@@ -183,38 +184,13 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
     );
   }
 
-  void getLecturesFromApi() {
-    LectureApi.getLectures().then((response)  {
-      setState(() {
-        Iterable list = jsonDecode(response.body);
-        this._lectures = list.map((lecture) => Lecture.fromJson(lecture)).toList();
-        _selectedLecture = _lectures[0];
-        getLectureWidgets();
-      });
-    });
-  }
 
-  List<Widget> getLectureWidgets() {
-    for(Lecture lecture in _lectures){
-      _flatButtons.add(getLectureWidget(lecture));
-    }
-  }
 
-  Widget getLectureWidget(Lecture lecture) {
-    return FlatButton(
-      child: Text(lecture.lecture_name),
-      color: Colors.teal,
-      textColor: flatButtonTextColor,
-      onPressed: (){lectureFlatButtonClicked(lecture);},
-    );
-  }
 
-  lectureFlatButtonClicked(Lecture lecture) {
 
-   _selectedLecture = lecture;
-   debugPrint(_selectedLecture.lecture_name);
 
-  }
+
+
 
   Future<void> _questionDialog() async {
     return showDialog<void>(
@@ -252,5 +228,44 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
 
   void _getOrdinal() {
     _getQuestion();
+  }
+
+  void getLecturesFromApi() {
+    LectureApi.getLectures().then((response) {
+      setState(() {
+        Iterable lectureList = jsonDecode(response.body);
+        this._lectures = lectureList.map((lecture) => Lecture.fromJson(lecture)).toList();
+        _selectedLecture = _lectures[0];
+        getLectureWidgets();
+      });
+    });
+  }
+
+  List<DropdownMenuItem<Lecture>> getLectureWidgets() {
+    for(Lecture lecture in _lectures){
+      _lectureItems.add(getLectureWidget(lecture));
+    }
+    return _lectureItems;
+  }
+
+  DropdownMenuItem<Lecture> getLectureWidget(Lecture lecture) {
+    return DropdownMenuItem(
+      child: Text(lecture.lecture_name),
+      value: lecture,
+    );
+  }
+
+  builDropDownButton() {
+    return DropdownButton(
+     items: _lectureItems,
+      value: _selectedLecture,
+      onChanged: (Lecture selected) => onChangedLecture(selected),
+    );
+  }
+
+  onChangedLecture(Lecture selected) {
+    setState(() {
+      _selectedLecture = selected;
+    });
   }
 }// class sonu

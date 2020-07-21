@@ -16,20 +16,20 @@ class _QuestionScreenState extends State<QuestionScreen> {
       appBar: AppBar(
         title: Text("Soru Makinesi"),
         actions: <Widget>[
-          IconButton(icon: Icon(Icons.add),onPressed:() { questionAddClicked(); },color: iconButtonColor,),
-          IconButton(icon: Icon(Icons.update),onPressed: () { questionUpdateClicked(); }, color: iconButtonColor,)
+          IconButton(icon: Icon(Icons.add),onPressed: _questionAddClicked ,color: iconButtonColor,),
+          IconButton(icon: Icon(Icons.update),onPressed: _questionUpdateClicked, color: iconButtonColor,)
         ],
       ),
       body: QuestionWidgets(),
     );
   }
 
-  void questionAddClicked() {
+  void _questionAddClicked() {
     Navigator.pushNamed(context, "/questionAdd");
   }
 
-  void questionUpdateClicked() {
-    debugPrint("Soru Güncelleme butonuna basıldı");
+  void _questionUpdateClicked() {
+    Navigator.pushNamed(context, "/questionUpdate");
   }
 
 

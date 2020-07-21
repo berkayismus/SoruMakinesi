@@ -3,6 +3,7 @@ import 'package:soru_makinesi/data/api/user_api.dart';
 import 'package:soru_makinesi/screens/login_screen.dart';
 import 'package:soru_makinesi/screens/question_add_screen.dart';
 import 'package:soru_makinesi/screens/question_screen.dart';
+import 'package:soru_makinesi/screens/question_update_screen.dart';
 import 'package:soru_makinesi/screens/register_screen.dart';
 
 void main() => runApp(MyApp());
@@ -30,6 +31,7 @@ class _MyAppState extends State<MyApp> {
         '/question' : (context) => QuestionScreen(),
         "/register" : (context) => RegisterScreen(),
         "/questionAdd": (context) => QuestionAddScreen(),
+        "/questionUpdate": (context) => QuestionUpdateScreen(),
       },
     );
   }
