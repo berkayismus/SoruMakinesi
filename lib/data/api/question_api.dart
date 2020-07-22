@@ -13,6 +13,19 @@ class QuestionApi{
     return response;
   }
 
+  static Future getQuestionsAll(Lecture lecture) async {
+    String lecture_id = lecture.lecture_id;
+    var response = await http.get("$base_url/question/all/all.php?lecture_id=$lecture_id");
+    if(response.statusCode==200){
+      if(response!=null){
+        return response;
+      }
+      return null;
+    } else{
+      throw("İstek atılırken hata");
+    }
+  }
+
   static Future addQuestion(String question_question,String answers,String validate_answer,Lecture lecture) async {
     var data = {
       "question_question":question_question,
@@ -43,6 +56,15 @@ class QuestionApi{
     if(response.statusCode==200){
       return response;
     }else{
+      throw("İstek yapılırken hata");
+    }
+  }
+  
+  static Future deleteQuestion(String question_id) async {
+    var response = await http.get("$base_url/question/delete/index.php?question_id=$question_id");
+    if(response.statusCode == 200){
+      return response;
+    } else{
       throw("İstek yapılırken hata");
     }
   }

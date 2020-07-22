@@ -17,7 +17,8 @@ class _QuestionScreenState extends State<QuestionScreen> {
         title: Text("Soru Makinesi"),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.add),onPressed: _questionAddClicked ,color: iconButtonColor,),
-          IconButton(icon: Icon(Icons.update),onPressed: _questionUpdateClicked, color: iconButtonColor,)
+          IconButton(icon: Icon(Icons.update),onPressed: _questionUpdateClicked, color: iconButtonColor,),
+          IconButton(icon: Icon(Icons.delete),onPressed: _questionDeleteClicked, color: iconButtonColor,),
         ],
       ),
       body: QuestionWidgets(),
@@ -32,5 +33,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
     Navigator.pushNamed(context, "/questionUpdate");
   }
 
-
+  void _questionDeleteClicked() {
+    Navigator.pushNamed(context, "/questionDelete");
+  }
 }

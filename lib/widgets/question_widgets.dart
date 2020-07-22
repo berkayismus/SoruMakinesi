@@ -268,4 +268,8 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
       _selectedLecture = selected;
     });
   }
+
+  void goLectures() {
+    debugPrint("Dersler sayfasına git'e tıklandı");
+  }
 }// class sonu
