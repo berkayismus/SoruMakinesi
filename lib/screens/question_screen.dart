@@ -19,6 +19,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
           IconButton(icon: Icon(Icons.add),onPressed: _questionAddClicked ,color: iconButtonColor,),
           IconButton(icon: Icon(Icons.update),onPressed: _questionUpdateClicked, color: iconButtonColor,),
           IconButton(icon: Icon(Icons.delete),onPressed: _questionDeleteClicked, color: iconButtonColor,),
+          IconButton(icon: Icon(Icons.airplay),onPressed: _goLectureClicked, color: iconButtonColor,),
         ],
       ),
       body: QuestionWidgets(),
@@ -35,5 +36,9 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   void _questionDeleteClicked() {
     Navigator.pushNamed(context, "/questionDelete");
+  }
+
+  void _goLectureClicked() {
+    Navigator.pushNamed(context, "/lecture");
   }
 }

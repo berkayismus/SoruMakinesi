@@ -157,6 +157,7 @@ class _LoginWidgetsState extends State<LoginWidgets> {
      setState(() {
        message = response["message"];
        if(response["tf"] == true)
+       Navigator.pop(context);
        Navigator.pushNamed(context, "/question");
      });
   }
