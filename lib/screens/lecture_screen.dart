@@ -12,8 +12,15 @@ class _LectureScreenState extends State<LectureScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Ders Ekleme Sayfası"),
+        actions: <Widget>[
+          IconButton(icon: Icon(Icons.update),onPressed: _lectureUpdateClicked, color: Colors.white,),
+        ],
       ),
       body: LectureWidgets(),
     );
+  }
+
+  void _lectureUpdateClicked() {
+    Navigator.pushNamed(context, "/lectureUpdate");
   }
 }

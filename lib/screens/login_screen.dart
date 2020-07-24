@@ -14,9 +14,7 @@ class _LoginScreenState extends State<LoginScreen> {
       appBar: AppBar(
         title: Text("Kullanıcı Girişi"),
         actions: <Widget>[
-          IconButton(iconSize: 24,icon: Icon(Icons.add),onPressed: (){
-            
-          },),
+          IconButton(iconSize: 24,icon: Icon(Icons.add),onPressed: (){},),
         ],
       ),
       body: LoginWidgets(),

@@ -26,6 +26,17 @@ class QuestionApi{
     }
   }
 
+  // rastgele soru çekme
+  static Future randQuestions(Lecture lecture,String question_limit) async {
+    String lecture_id = lecture.lecture_id;
+    var response = await http.get("$base_url/question/all/random.php?lecture_id=$lecture_id&limit=$question_limit");
+    if(response.statusCode==200){
+      return response;
+    } else{
+      throw("Rastgele soru getirirken hata");
+    }
+  }
+
   static Future addQuestion(String question_question,String answers,String validate_answer,Lecture lecture) async {
     var data = {
       "question_question":question_question,

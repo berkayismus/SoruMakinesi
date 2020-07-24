@@ -20,6 +20,7 @@ class _QuestionScreenState extends State<QuestionScreen> {
           IconButton(icon: Icon(Icons.update),onPressed: _questionUpdateClicked, color: iconButtonColor,),
           IconButton(icon: Icon(Icons.delete),onPressed: _questionDeleteClicked, color: iconButtonColor,),
           IconButton(icon: Icon(Icons.airplay),onPressed: _goLectureClicked, color: iconButtonColor,),
+          IconButton(icon: Icon(Icons.close),onPressed: _logOutClicked, color: iconButtonColor,),
         ],
       ),
       body: QuestionWidgets(),
@@ -40,5 +41,10 @@ class _QuestionScreenState extends State<QuestionScreen> {
 
   void _goLectureClicked() {
     Navigator.pushNamed(context, "/lecture");
+  }
+
+  void _logOutClicked() {
+    Navigator.pop(context);
+    Navigator.pushNamed(context,"/");
   }
 }

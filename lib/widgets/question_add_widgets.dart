@@ -200,7 +200,7 @@ class _QuestionAddWidgetsState extends State<QuestionAddWidgets> {
   buildSixthRowWidget() {
     return Row(
       children: <Widget>[
-        Text(_questionMessage),
+        Text(_questionMessage ,style: customTextStyle(),),
       ],
     );
   }

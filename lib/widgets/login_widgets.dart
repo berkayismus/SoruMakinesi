@@ -131,7 +131,7 @@ class _LoginWidgetsState extends State<LoginWidgets> {
           textColor: Colors.white,
         ),
         SizedBox(
-          width: 55,
+          width: 9,
         ),
         FlatButton(
           onPressed: () {
