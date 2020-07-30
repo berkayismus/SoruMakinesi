@@ -126,9 +126,10 @@ class _QuestionUpdateWidgetsState extends State<QuestionUpdateWidgets> {
       QuestionApi.getQuestionsAll(selectedLecture).then((response) {
         setState(() {
           Iterable questionList = jsonDecode(response.body);
+          //debugPrint(questionList.toString());
           this._questionAllList = questionList.map((question) => Question.fromJson(question)).toList();
-          this._selectedQuestion = _questionAllList[0];
-          getQuestionWidgets();
+        this._selectedQuestion = _questionAllList[0];
+        getQuestionWidgets();
         });
       });
   }
@@ -152,6 +153,7 @@ class _QuestionUpdateWidgetsState extends State<QuestionUpdateWidgets> {
             value: _selectedQuestion,
             onChanged: (Question selected)=>onChangedQuestion(selected),
           ),
+
 
       ],
     );

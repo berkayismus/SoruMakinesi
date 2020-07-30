@@ -156,9 +156,13 @@ class _LoginWidgetsState extends State<LoginWidgets> {
     // mesajı yazdıralım
      setState(() {
        message = response["message"];
-       if(response["tf"] == true)
-       Navigator.pop(context);
-       Navigator.pushNamed(context, "/question");
+       if(response["tf"] == true) {
+         Navigator.pop(context);
+         Navigator.pushNamed(context, "/question");
+       }
+        else{
+          // bilgiler yanlışsa yönlendirme yapma
+       }
      });
   }
 

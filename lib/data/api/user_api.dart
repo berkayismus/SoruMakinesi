@@ -4,8 +4,9 @@ import "package:http/http.dart" as http;
 import 'package:soru_makinesi/models/user.dart';
 
 class UserApi {
-  static String base_url = "http://10.0.3.2";
-  //static String base_url = "http://berkayce.totalh.net"; hata veriyor
+  //static String base_url = "http://10.0.3.2/PSWS"; // localhost
+  static String base_url = "https://berkayismus.site/soru_makinesi"; // remote server
+
 
   // çalışıyor
   static Future getUsers() {

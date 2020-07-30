@@ -143,14 +143,16 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
           SizedBox(
             width: sizedBoxSpaceWith,
           ),
-          Container(
-            height: 50,
-            width: 100,
-            child: FlatButton(
-              child: Text("RASTGELE"),
-              onPressed: getQuestionRandom,
-              color: flatButtonColor,
-              textColor: flatButtonTextColor,
+          Expanded(
+            child: Container(
+              height: 50,
+              width: 100,
+              child: FlatButton(
+                child: Text("RASTGELE"),
+                onPressed: getQuestionRandom,
+                color: flatButtonColor,
+                textColor: flatButtonTextColor,
+              ),
             ),
           ),
         ],
@@ -306,15 +308,17 @@ class _QuestionWidgetsState extends State<QuestionWidgets> {
 
   builFourthRowWidget() {
     // _getQuestionTextsAll
-    return SingleChildScrollView(
-      scrollDirection: Axis.vertical,
-        child: TextField(
-          controller: _questionsController,
-          maxLines: 10,
-          decoration: InputDecoration(
-            labelText: "Getirilen Sorular",
-            border: OutlineInputBorder(),
-          ),
-    ));
+    return Expanded(
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+          child: TextField(
+            controller: _questionsController,
+            maxLines: 10,
+            decoration: InputDecoration(
+              labelText: "Getirilen Sorular",
+              border: OutlineInputBorder(),
+            ),
+      )),
+    );
   }
 } // class sonu

@@ -3,7 +3,8 @@ import 'package:soru_makinesi/models/lecture.dart';
 
 class LectureApi{
 
-  static String base_url = "http://10.0.3.2";
+  //static String base_url = "http://10.0.3.2/PSWS"; // localhost
+  static String base_url = "https://berkayismus.site/soru_makinesi"; // remote server
 
   static Future getLectures() async {
     var response = await http.get("$base_url/lecture/all");

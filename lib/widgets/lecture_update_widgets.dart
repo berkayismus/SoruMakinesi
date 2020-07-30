@@ -64,7 +64,7 @@ class _LectureUpdateWidgetsState extends State<LectureUpdateWidgets> {
           SizedBox(width: sizedBoxWithSpace,),
           buildLectureDropdown(),
           SizedBox(width: sizedBoxWithSpace,),
-          buildDeleteButton(),
+         // buildDeleteButton(),
         ],
       ),
     );
