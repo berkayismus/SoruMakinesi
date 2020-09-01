@@ -11,6 +11,7 @@ Flutter kullanarak IOS,Android,Web hatta Masaüstü uygulamalar geliştirebilirs
 Flutter SDK kurulumu: [https://flutter.dev/docs/get-started/install](https://flutter.dev/docs/get-started/install)
 Android Studio kurulumu: [https://flutter.dev/docs/get-started/editor](https://flutter.dev/docs/get-started/editor)
 Genymotion(Emülatör) kurulumu: [https://www.youtube.com/watch?v=ci8gCf5rd1Q](https://www.youtube.com/watch?v=ci8gCf5rd1Q)
+
 Gerekli kurulumları tamamladıktan sonra, projeyi indirin ve sıradaki yönergeleri takip edin.
 
 
