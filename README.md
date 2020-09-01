@@ -18,6 +18,7 @@ Gerekli kurulumları tamamladıktan sonra, projeyi indirin ve sıradaki yönerge
 
 İndirdiğiniz proje dosyasını zipten çıkarın. Klasörü **C:\Users\\<Kullanıcı Adınız>\AndroidStudioProjects** içine atın. Ardından **Android Studio**'yu açın.
 **File** menüsünden **Open** seçeneğine tıklayın. Karşınıza şöyle bir pencere gelecek;
+
 ![proje seçimi](https://linkpicture.com/q/Ekran-Al%C4%B1nt%C4%B1s%C4%B1_35.jpg)
 
 Görselde görüldüğü gibi **soru_makinesi**'ni seçin ve **Ok**'e tıklayın.Karşınıza gelen pencereden **This Window**'u seçin.
@@ -27,8 +28,11 @@ Görselde görüldüğü gibi **soru_makinesi**'ni seçin ve **Ok**'e tıklayın
 
 Genymotion'ı açın ve daha önceden oluşturduğunuz, sanal telefonu çalıştırın. Sanal telefonunuz çalıştıktan sonra; Android Studio'ya geri dönün.
 Aşağıda yeşil renkte gösterilen Play ikonuna basın. 
+
 ![start application](https://www.linkpicture.com/q/Ekran-Al%C4%B1nt%C4%B1s%C4%B1_36.jpg)
 
 Uygulamanın apk dosyası sanal telefonunuza gönderildikten sonra çalıştırılacaktır. Herşeyi eksiksiz yaptıysanız, şöyle bir ekranla karşılaşmanız gerekiyor;
+
 ![tebrikler](https://www.linkpicture.com/q/Ekran-Al%C4%B1nt%C4%B1s%C4%B1_37.jpg)
+
 Tebrikler, uygulamayı çalıştırdınız! Giriş yaptıktan sonra kullanmaya başlayabilirsiniz.
