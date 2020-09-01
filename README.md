@@ -32,7 +32,7 @@ Aşağıda yeşil renkte gösterilen Play ikonuna basın.
 
 ![start application](https://www.linkpicture.com/q/Ekran-Al%C4%B1nt%C4%B1s%C4%B1_36.jpg)
 
-Uygulamanın apk dosyası sanal telefonunuza gönderildikten sonra çalıştırılacaktır. Herşeyi eksiksiz yaptıysanız, şöyle bir ekranla karşılaşmanız gerekiyor;
+Uygulamanın apk dosyası sanal telefonunuza gönderildikten sonra çalıştırılacaktır. Herşeyi eksiksiz yaptıysanız, emülatörde şöyle bir ekranla karşılaşmanız gerekiyor;
 
 ![tebrikler](https://www.linkpicture.com/q/Ekran-Al%C4%B1nt%C4%B1s%C4%B1_37.jpg)
 
