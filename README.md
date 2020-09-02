@@ -8,12 +8,13 @@ Flutter kullanarak IOS,Android,Web hatta Masaüstü uygulamalar geliştirebilirs
 
 **Projeyi çalıştırabilmek için** öncelikle bilgisayarınızda kurulu değilse, aşağıdaki programları kurmanız gerekiyor.
 
+
+Java 8 SDK indirin: [Java 8](https://www.oracle.com/tr/java/technologies/javase/javase-jdk8-downloads.html)
 Flutter SDK kurulumu: [https://flutter.dev/docs/get-started/install](https://flutter.dev/docs/get-started/install)
 Android Studio kurulumu: [https://flutter.dev/docs/get-started/editor](https://flutter.dev/docs/get-started/editor)
 Genymotion(Emülatör) kurulumu: [https://www.youtube.com/watch?v=ci8gCf5rd1Q](https://www.youtube.com/watch?v=ci8gCf5rd1Q)
 
 Gerekli kurulumları tamamladıktan sonra, projeyi indirin ve sıradaki yönergeleri takip edin.
-
 
 # Android studio ve Genymotion ile uygulamayı çalıştırma
 
@@ -36,4 +37,4 @@ Uygulamanın apk dosyası sanal telefonunuza gönderildikten sonra çalıştır�
 
 ![tebrikler](https://www.linkpicture.com/q/Ekran-Al%C4%B1nt%C4%B1s%C4%B1_37.jpg)
 
-Tebrikler, uygulamayı çalıştırdınız! Giriş yaptıktan sonra kullanmaya başlayabilirsiniz.
+Tebrikler, uygulamayı çalıştırdınız! Hesap oluşturup, giriş yaptıktan sonra kullanmaya başlayabilirsiniz.
