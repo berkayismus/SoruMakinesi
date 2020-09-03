@@ -3,9 +3,12 @@
 Merhaba, Rastgele sınav sorusu seçme uygulaması, oluşturulan soru havuzundan rastgele veya sıralı bir şekilde soru getirmeye yarıyor. Bu sayede öğretim üyelerini her sene farklı soru hazırlama zahmetinden kurtarıyor. 
 
 **Uygulamayı geliştirirken kullandığım teknolojiler ve programlama dilleri:**
-mobil uygulama tarafında; Dart,Flutter
-web servis tarafında; PHP(core)
-veritabanı tarafında: MySQL
+
+mobil uygulama tarafında; `Dart,Flutter`
+
+web servis tarafında; `PHP(core)`
+
+veritabanı tarafında: `MySQL`
 
 Flutter, Google’ın cross-platform çalışan uygulamalar geliştirmek amacıyla ortaya çıkardığı bir SDK(Software Development Kit)’dır.
 
