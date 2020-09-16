@@ -54,3 +54,7 @@ Uygulamanın apk dosyası sanal telefonunuza gönderildikten sonra çalıştır�
 ![tebrikler](https://www.linkpicture.com/q/Ekran-Al%C4%B1nt%C4%B1s%C4%B1_37.jpg)
 
 Tebrikler, uygulamayı çalıştırdınız! Hesap oluşturup, giriş yaptıktan sonra kullanmaya başlayabilirsiniz.
+
+## Nasıl görünüyor
+
+![Soru makinesi thumbnail](https://im6.ezgif.com/tmp/ezgif-6-2f0dea59d59e.gif)
