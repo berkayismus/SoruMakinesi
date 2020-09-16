@@ -57,4 +57,4 @@ Tebrikler, uygulamayı çalıştırdınız! Hesap oluşturup, giriş yaptıktan 
 
 ## Nasıl görünüyor
 
-![Soru makinesi thumb](https://im6.ezgif.com/tmp/ezgif-6-1094efdc550d.gif)
+![Soru makinesi thumb](https://im6.ezgif.com/tmp/ezgif-6-b0e8758fb25c.gif)
