@@ -57,4 +57,4 @@ Tebrikler, uygulamayı çalıştırdınız! Hesap oluşturup, giriş yaptıktan 
 
 ## Nasıl görünüyor
 
-![Soru makinesi thumb](https://www.linkpicture.com/q/soru-makinesi-20200916135446.gif)
+![Soru makinesi thumb](https://i.ibb.co/hK6kw3f/soru-makinesi-20200916135446.gif)
